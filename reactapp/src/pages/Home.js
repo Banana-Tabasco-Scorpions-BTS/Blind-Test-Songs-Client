@@ -4,14 +4,16 @@ import axios from "axios"
 
 import './Home.css';
 
-
+//THIS IS THE RETURN MOMEMNT
 
 export function Home() {
   const [user, setUser] = useState("");
   const [gameID, setGameID] = useState()
+  const [song,setSong] = useState("")
 
 
   const navigate = useNavigate();
+  
   useEffect(() => {
     if (gameID !== undefined) {
       navigate('/play',{
@@ -22,14 +24,34 @@ export function Home() {
       // console.log(window.location)
       window.location.replace('/play')
     }
+
+    
   }, [gameID])
+  
+  // useEffect(() => {
+  //   if (song !== undefined) {
+  //     navigate('/play',{
+  //       state: {
+  //         song: song,
+  //       }})
+      
+  //     // console.log(window.location)
+  //     window.location.replace('/play')
+  //   }
+
+    
+  // }, [song])
 
   async function handleClick() {
     setGameID(await axios.post('https://blind-test-songs-server-predeploy.onrender.com/newgame', { "username": user })
       .then((newGameRes) => {
+        console.log (newGameRes.data)
         const newGameID = newGameRes.data.gameID
+        const newSong = newGameRes.data.songURL
+        console.log (newGameRes.data)
         setGameID(newGameID);
-        return newGameID
+        setSong(newSong)
+        return newGameID;
       })
       .catch((err) => console.log(err))
     )
@@ -43,7 +65,7 @@ export function Home() {
       <p className="intro-text">To start, just write your name and hit the big ol' button.</p>
       <Link 
         to="/play"
-        state={{gameID: gameID}}
+        state={{gameID: gameID, song:song}}
       ></Link>
       <input className="input"
         autoFocus

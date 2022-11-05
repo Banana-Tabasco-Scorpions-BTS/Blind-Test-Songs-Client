@@ -1,18 +1,23 @@
 import React from "react";
+import axios from "axios";
 
 
 export function TakeGuess(props){
-  const {guess, setGuess, } = props;
+  const {guess, setGuess,user,gameID,setRoundSuccess } = props;
 
-  const handleInput = (e) => {
-    e.preventDefault();
-    const savedguess = {guess}
-    console.log (savedguess)
-    // fetch(endpoint,{
-    //   method: 'POST',
-    //   headers: {"Content-Type": "application/json"},
-    //   body:JSON.stringify(savedUser)
-    // })
+  async function makeGuess() {
+    console.log ("😎", user, gameID, guess)
+    setGuess(await axios.post('https://blind-test-songs-server-predeploy.onrender.com/guess', { "gameID":gameID, "guess":guess  })
+      .then((newGuessRes) => {
+        console.log (newGuessRes.data)
+        const guessMatch = newGuessRes.data.guessMatch;
+        setRoundSuccess(guessMatch)
+        console.log (guess)
+        
+        return newGuessRes
+      })
+      .catch((err) => console.log(err))
+    )
   }
 
 
@@ -21,16 +26,16 @@ export function TakeGuess(props){
   return (
     <div>
       <p> TakeGuess component starts here</p>
-      <form onSubmit={handleInput}>
-        <label>Take a Guess</label>
-        <input 
+      
+       
+        <input className="take_guess"  //swap the classname using if badguess true || false 
         type="text" 
         required
         value={guess}
         onChange={(e)=>setGuess(e.target.value)}
         />
-        <button>Save</button>
-      </form>
+        <button className="start-button" onClick={makeGuess}  >Try your luck</button>
+      
       <p> TakeGuess component starts here</p>
     </div>
   )

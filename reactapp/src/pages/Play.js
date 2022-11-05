@@ -7,14 +7,17 @@ import { useLocation } from "react-router-dom"
 
 
 export function Play(props) {
-  const [currentView, setCurrentView] = useState("round_start");
+  const [currentView, setCurrentView] = useState("round_ongoing");
   const [user, setUser] = useState("");
   const [guess, setGuess] = useState("");
   const [round, setRound] = useState(1);
+  const [isPLaying, setIsPlaying] = useState(false)
+  const [outOfTime,setOutOfTime] = useState(false)
   const {gameID} = props;
+  
 
   const location = useLocation();
-  console.log(location)
+  console.log(location,gameID)
 
   // to swap between  
 
@@ -41,6 +44,13 @@ export function Play(props) {
                   guess={guess}
                   songsdata={songsdata}
                   setGuess={setGuess}
+                  isPlaying={isPLaying}
+                  setIsPlaying={setIsPlaying}
+                  setCurrentView={setCurrentView}
+                  gameID={location.state.gameID}
+                  user={user}
+                  outOfTime={outOfTime}
+                  setOutOfTime={setOutOfTime}
                 />
               </div>
             )
