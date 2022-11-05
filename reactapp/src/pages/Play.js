@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { RoundEnd } from '../components/RoundEnd';
 import { RoundOngoing } from '../components/RoundOngoing';
 import { RoundStart } from '../components/RoundStart';
 import { songsdata } from '../songsdata';
@@ -28,22 +29,37 @@ export function Play(props) {
               <div className='round_start'>
                 <RoundStart
                   gameID={gameID}
-                  user={user}
-                  setUser={setUser}
+                  round={round}
+                  setCurrentView={setCurrentView}
                 />
               </div>
             )
           }
-          if (currentView === "round_ongoing")
+          if (currentView === "round_ongoing") {
             return (
               <div className='round_ongoing'>
                 <RoundOngoing
                   guess={guess}
                   songsdata={songsdata}
                   setGuess={setGuess}
+                  setCurrentView={setCurrentView}
                 />
               </div>
             )
+          }
+          if (currentView === "round_end") {
+            return (
+              <div className='round_end'>
+                <RoundEnd
+                  guess={guess}
+                  songsdata={songsdata}
+                  setGuess={setGuess}
+                  setCurrentView={setCurrentView}
+
+                />
+              </div>
+            )
+          }
 
         })()}
     </section>

@@ -20,7 +20,7 @@ export function TakeGuess(props){
   
   return (
     <div>
-      <p> TakeGuess component starts here</p>
+
       <form onSubmit={handleInput}>
         <label>Take a Guess</label>
         <input 
@@ -31,7 +31,7 @@ export function TakeGuess(props){
         />
         <button>Save</button>
       </form>
-      <p> TakeGuess component starts here</p>
+
     </div>
   )
 }
