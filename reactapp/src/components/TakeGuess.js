@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 
 
-
-export function RoundStart(props){
-  const {user,setUser} = props;
-
+export function TakeGuess(props){
+  const {guess, setGuess, } = props;
 
   const handleInput = (e) => {
     e.preventDefault();
-    const savedUser = {user};
-    console.log (savedUser)
+    const savedguess = {guess}
+    console.log (savedguess)
     // fetch(endpoint,{
     //   method: 'POST',
     //   headers: {"Content-Type": "application/json"},
@@ -22,23 +20,18 @@ export function RoundStart(props){
   
   return (
     <div>
-      <p> RoundStart Component starts here</p>
-      <p>USER IS {user}</p>
+      <p> TakeGuess component starts here</p>
       <form onSubmit={handleInput}>
-        <label>User Name</label>
+        <label>Take a Guess</label>
         <input 
         type="text" 
         required
-        value={user}
-        onChange={(e)=>setUser(e.target.value)}
+        value={guess}
+        onChange={(e)=>setGuess(e.target.value)}
         />
         <button>Save</button>
       </form>
-        <p> RoundStart Component ends here</p>
-
-      
-
+      <p> TakeGuess component starts here</p>
     </div>
   )
 }
-
