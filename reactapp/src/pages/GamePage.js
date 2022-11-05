@@ -7,6 +7,7 @@ import { songsdata } from '../songsdata';
 export function GamePage() {
   const [currentView, setCurrentView] = useState("");
   const [user,setUser] = useState("");
+  const [guess,setGuess] = useState("");
 
 
 // to swap between  
@@ -18,12 +19,17 @@ export function GamePage() {
       <div className='main_container'>
 
         <div className='round_start'>
-          <RoundStart user={user} setUser={setUser} 
+          <RoundStart 
+          user={user} 
+          setUser={setUser} 
           />
         </div>
 
         <div className='round_ongoing'>
-          <RoundOngoing songsdata={songsdata}
+          <RoundOngoing 
+          guess={guess}
+          songsdata={songsdata}
+          setGuess={setGuess} 
           />
         </div>
       
