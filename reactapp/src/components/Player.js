@@ -1,9 +1,9 @@
 import React from "react";
-import { songsdata } from '../songsdata';
 
 
 
-export function Player(){
+export function Player(props){
+  const {songsdata} = props;
 
   const url =songsdata[1].url;
   
