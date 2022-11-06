@@ -1,57 +1,57 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import './TakeGuess.css';
 import axios from "axios";
 
 
 export function TakeGuess(props) {
-  const { guess, setGuess, gameID, setSongInfo, setScore, setCurrentView, setRoundSuccess } = props;
+  const { guess, setGuess, gameID, setSongInfo, setScore, score, setCurrentView, roundSuccess, setRoundSuccess } = props;
 
   const [guessResult, setGuessResult] = useState();
+  const inputBox = useRef();
 
   async function sendGuess() {
     await axios
       .post('https://blind-test-songs-server-predeploy.onrender.com/guess', { "gameID": gameID, "guess": guess })
       .then(res => {
-        console.log(res)
         setGuessResult(res.data.guessMatch)
         if (res.data.guessMatch === true) {
           setSongInfo(res.data.result)
           setScore(res.data.currentScore)
-          setCurrentView('round_end')
+          setGuess("")
           setRoundSuccess(res.data.roundSuccess)
+          setCurrentView('round_end')
+        } else {
+          if (inputBox.current) {
+            inputBox.current.classList.add('input-red')
+            setTimeout(() => {
+              inputBox.current.classList.remove('input-red')
+            }, 500);
+          }
         }
       })
+    setGuess("")
   }
 
-  // if guessResult is false, activate a css class
-
-//   {
-//     "gameID": "9",
-//     "guessMatch": true,
-//     "roundSuccess": true,
-//     "result": {
-//         "song": "Every Little Thing She Does Is Magic",
-//         "artist": "The Police",
-//         "album": "Ghost In The Machine (Remastered 2003)"
-//     },
-//     "currentScore": 1
-// }
-
-  // useEffect(() => {
-  //   console.log(guessResult)
-  // }, [guessResult])
-
+  const handleEnter = (event) => {
+    if (event.key === 'Enter' && !roundSuccess) {
+      sendGuess()
+    }
+  }
 
   return (
-    //   <label>Take a Guess</label>
-      <div id="container-input">
-        <input id="guess-input" autoComplete="off"
-          type="text"
-          required
-          value={guess}
-          onChange={(e) => setGuess(e.target.value)}
-        />
-        <button onClick={sendGuess} id="guess-button">Go!</button>
-      </div>
+    <div id="container-input" onKeyDown={handleEnter}>
+      <input
+        ref={inputBox}
+        autoFocus
+        className="guess-input"
+        autoComplete="off"
+        onKeyDown={handleEnter}
+        type="text"
+        required
+        value={guess}
+        onChange={(e) => setGuess(e.target.value)}
+      />
+      <button onClick={sendGuess} id="guess-button">GO</button>
+    </div>
   )
 }

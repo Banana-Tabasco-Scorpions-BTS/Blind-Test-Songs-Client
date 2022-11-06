@@ -17,16 +17,16 @@ export function RoundEnd(props) {
         const songInfo = await axios
             .post('https://blind-test-songs-server-predeploy.onrender.com/nextround', { "gameID": gameID })
             .then(res => res)
-        
+
         setNextRoundInfo(songInfo)
         if (songInfo.data.songURL) setTrackURL(songInfo.data.songURL)
     }
-    
+
     async function getResult() {
         const result = await axios
             .post('https://blind-test-songs-server-predeploy.onrender.com/result', { "gameID": gameID })
             .then(res => res)
-        setPreviousScore(result.data.previousScore);    
+        setPreviousScore(result.data.previousScore);
         setCurrentView('result')
     }
 
@@ -39,7 +39,6 @@ export function RoundEnd(props) {
 
     useEffect(() => {
         if (redirect === true) {
-            console.log(nextRoundInfo)
             if (nextRoundInfo.data.gameEnd) {
                 getResult();
             } else {
@@ -48,26 +47,23 @@ export function RoundEnd(props) {
         }
     }, [redirect])
 
-    useEffect(()=> {
-        console.log(roundSuccess)
-    },[])
-
     return (
-        <div>
+        <div id='round-end__all'>
             {(() => {
-                if (roundSuccess) return <p>Well Done!</p>
+                if (roundSuccess) return <p>Very wow, much clever.</p>
                 if (!roundSuccess) return <p>Yikes, try again.</p>
-            })() }
+            })()}
 
             <h2 id='score'> Current score: {score}</h2>
             <p id='song__name'>{songName}</p>
-            <p id='song__artist'>{songArtist} ({songAlbum})</p>
-            {/* <p id='song__album'></p> */}
-            <CountDownTimer seconds={3} setRedirect={setRedirect} />
+            <p id='song__artist-album'>{songArtist} ({songAlbum})</p>
+
+            
+            <div hidden>
+                <CountDownTimer seconds={3} setRedirect={setRedirect} />
+            </div>
 
 
         </div>
     )
-
-
 }
