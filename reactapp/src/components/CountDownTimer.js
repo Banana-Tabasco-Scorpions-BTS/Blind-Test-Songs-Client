@@ -31,7 +31,7 @@ export function CountDownTimer(props) {
 
     return (
         <div>
-            <p>{`${time.seconds.toString()}`}</p>
+            {`${time.seconds.toString()}`}
         </div>
     );
 }

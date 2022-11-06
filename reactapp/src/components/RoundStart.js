@@ -1,11 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 import { CountDownTimer } from "./CountDownTimer";
 
 
 export function RoundStart(props){
-  const {round, setCurrentView} = props;
+  const {setRound, round, setCurrentView} = props;
   const [redirect, setRedirect] = useState(false)
+  const [countHasChanged, setCountHasChanged] = useState(false);
+
+  useEffect(() => {
+    if(countHasChanged === false) {
+      setCountHasChanged(true)
+      setRound(round + 1)
+    }
+  }, [countHasChanged])
 
   useEffect(() => {
     if (redirect === true) {
@@ -20,7 +28,7 @@ export function RoundStart(props){
       <p>Starting in</p>
 
       <div>
-          <CountDownTimer seconds={5} setRedirect={setRedirect}/>
+          <CountDownTimer seconds={2} setRedirect={setRedirect}/>
         </div>
   
       
