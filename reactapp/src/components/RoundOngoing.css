@@ -1,4 +1,15 @@
 .guess-timer {
+    margin-bottom: 10vh;
     font-size: 3rem;
     font-weight: 700;
+}
+
+#round-ongoing__all {
+    opacity: 1;
+    animation: fade-in 0.5s ease-in-out 0s 1 normal forwards;
+}
+
+@keyframes fade-in {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
 }

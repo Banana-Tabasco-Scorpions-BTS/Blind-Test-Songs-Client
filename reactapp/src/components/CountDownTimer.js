@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 
 
@@ -6,7 +6,7 @@ export function CountDownTimer(props) {
     const { seconds = 30, setRedirect } = props;
 
 
-    const [time, setTime] = React.useState({ seconds });
+    const [time, setTime] = useState({ seconds });
 
 
     const tick = () => {
@@ -23,7 +23,7 @@ export function CountDownTimer(props) {
     const reset = () => setTime({ seconds: time.seconds });
 
 
-    React.useEffect(() => {
+    useEffect(() => {
         const timerId = setInterval(() => tick(), 1000);
         return () => clearInterval(timerId);
     });

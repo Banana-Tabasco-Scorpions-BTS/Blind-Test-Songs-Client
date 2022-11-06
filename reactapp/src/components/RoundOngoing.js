@@ -6,12 +6,8 @@ import './RoundOngoing.css';
 import axios from "axios";
 
 export function RoundOngoing(props) {
-  const { gameID, trackURL, guess, setGuess, setCurrentView, setSongInfo, setScore, setRoundSuccess } = props;
+  const { gameID, trackURL, guess, score, setGuess, setCurrentView, setSongInfo, setScore, roundSuccess, setRoundSuccess } = props;
   const [redirect, setRedirect] = useState(false)
-
-  useEffect(() => {
-    setRoundSuccess(false)
-  }, [])
 
   async function sendTimeout() {
     await axios
@@ -30,7 +26,7 @@ export function RoundOngoing(props) {
   }, [redirect])
 
   return (
-    <div>
+    <div id='round-ongoing__all'>
 
       <div className="guess-timer">
         <CountDownTimer seconds={25} setRedirect={setRedirect} />
@@ -45,6 +41,8 @@ export function RoundOngoing(props) {
           setScore={setScore}
           setCurrentView={setCurrentView}
           setRoundSuccess={setRoundSuccess}
+          roundSuccess={roundSuccess}
+          score={score}
         />
       </div>
 

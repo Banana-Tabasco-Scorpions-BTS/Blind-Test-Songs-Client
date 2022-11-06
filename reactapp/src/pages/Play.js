@@ -42,6 +42,7 @@ export function Play(props) {
                 gameID={gameID}
                 round={round}
                 setCurrentView={setCurrentView}
+                setRoundSuccess={setRoundSuccess}
               />
             </div>
           )
@@ -59,6 +60,7 @@ export function Play(props) {
                 setSongInfo={setSongInfo}
                 score={score}
                 setScore={setScore}
+                roundSuccess={roundSuccess}
                 setRoundSuccess={setRoundSuccess}
               />
             </div>
@@ -92,6 +94,7 @@ export function Play(props) {
                 setGameID={setGameID}
                 setTrackURL={setTrackURL}
                 setRound={setRound}
+                setScore={setScore}
               />
             </div>
           )

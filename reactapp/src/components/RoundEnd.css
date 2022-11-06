@@ -7,3 +7,14 @@
     font-weight: 700;
     margin-bottom: 2vh;
 }
+
+#round-end__all {
+    animation: fade-in-out 4s ease-in-out 0s 1 forwards;
+}
+
+@keyframes fade-in-out {
+    0%   {opacity: 0;}
+    20%  {opacity: 1;}
+    80%  {opacity: 1;}
+    100% {opacity: 0;}
+}

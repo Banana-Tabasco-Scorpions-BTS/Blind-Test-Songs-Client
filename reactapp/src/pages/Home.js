@@ -21,7 +21,7 @@ export function Home() {
     }
   }, [gameID])
 
-  async function handleClick() {
+  async function getNewGame() {
     const startGameData = await axios.post('https://blind-test-songs-server-predeploy.onrender.com/newgame', { "username": user })
       .then((newGameRes) => newGameRes.data)
       .catch((err) => console.log(err))
@@ -29,17 +29,24 @@ export function Home() {
     setTrackURL(startGameData.songURL)
   }
 
+  const handleEnter = (event) => {
+    if (event.key === 'Enter') {
+      getNewGame()
+    }
+  }
+
   return (
-    <section className="container">
+    <section className="container" onKeyDown={handleEnter}>
 
       <h1>BLIND TEST SONGS</h1>
-      <p className="intro-text">You have 30 seconds to guess the name of song, sounds simple right?</p>
+      <p className="intro-text">You have 25 seconds to guess the name of song, sounds simple right?</p>
       <p className="intro-text">To start, just write your name and hit the big ol' button.</p>
       {/* <Link 
         to="/play"
         state={{gameID: gameID}}
       ></Link> */}
       <input className="input"
+        onKeyDown={handleEnter}
         autoFocus
         type="text"
         required
@@ -47,7 +54,7 @@ export function Home() {
         onChange={(e) => setUser(e.target.value)}
       />
 
-      <button className="start-button" onClick={handleClick}>Let's go!</button>
+      <button className="start-button" onClick={getNewGame}>Let's go!</button>
     </section>
   )
 }
