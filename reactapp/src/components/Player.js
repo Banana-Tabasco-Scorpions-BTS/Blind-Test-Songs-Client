@@ -3,9 +3,9 @@ import React from "react";
 
 
 export function Player(props){
-  const {songsdata} = props;
+  const {songsdata,url} = props;
 
-  const url =songsdata[1].url;
+ 
   
   return (
     <div>

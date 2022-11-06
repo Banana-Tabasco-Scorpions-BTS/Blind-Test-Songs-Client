@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 
 
 export function CorrectGuess(){
+ 
+
+  
 
   
   return (
     <div>
-      <p> Games starting View</p>
+      <p> THis is correct guess</p>
 
     </div>
   )

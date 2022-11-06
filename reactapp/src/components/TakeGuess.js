@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 export function TakeGuess(props){
-  const {guess, setGuess,user,gameID,setRoundSuccess } = props;
+  const {guess, setGuess,user,gameID,setRoundSuccess,setCurrentView } = props;
 
   async function makeGuess() {
     console.log ("😎", user, gameID, guess)
@@ -12,13 +12,14 @@ export function TakeGuess(props){
         console.log (newGuessRes.data)
         const guessMatch = newGuessRes.data.guessMatch;
         setRoundSuccess(guessMatch)
-        console.log (guess)
+        console.log ("🍒",guess, guessMatch)
         
         return newGuessRes
       })
       .catch((err) => console.log(err))
     )
   }
+
 
 
 

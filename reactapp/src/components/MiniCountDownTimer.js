@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 
-export function CountDownTimer(props){
+export function MiniCountDownTimer(props){
     const {
         seconds = 60,
         roundSuccess,
@@ -14,10 +14,7 @@ export function CountDownTimer(props){
         setTakingGuess,
         play,
         setPlay,
-        setOutOfTime,
-        setAlbum,
-        setArtist,
-        setTrackURL
+        setOutOfTime
 
 
     } = props
@@ -29,8 +26,7 @@ export function CountDownTimer(props){
 const tick = () => {
     if ( time.seconds === 0){
         
-       
-        setOutOfTime(true)
+        setRedirect(true)
         reset();
         
             
@@ -50,24 +46,19 @@ const tick = () => {
     });
 
 
-   
-
 
     async function outOfTime() {
         console.log ("😒" ,gameID)
         setRoundSuccess(await axios.post('https://blind-test-songs-server-predeploy.onrender.com/timeout', { "gameID":gameID })
           .then((outOfTimeRes) => {
             console.log (outOfTimeRes.data)
-            const result = outOfTimeRes.data.result;
+            const result = outOfTimeRes.data.result
             const {song,artist,album} = outOfTimeRes.data.result;
-            setRoundSuccess(result);
-            setIsPlaying(false);
-            setAlbum(album);
-            setArtist(artist);
-            setTrackURL(song)
+            setRoundSuccess(result)
+            setIsPlaying(false)
             console.log (result,song,artist,album)
             
-            return result;
+            return result
           })
           .catch((err) => console.log(err))
         )
@@ -83,4 +74,3 @@ const tick = () => {
         </div>
     );
 }
-

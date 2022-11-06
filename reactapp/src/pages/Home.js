@@ -9,7 +9,7 @@ import './Home.css';
 export function Home() {
   const [user, setUser] = useState("");
   const [gameID, setGameID] = useState()
-  const [song,setSong] = useState("")
+  const [trackURL,setTrackURL] = useState("")
 
 
   const navigate = useNavigate();
@@ -19,44 +19,24 @@ export function Home() {
       navigate('/play',{
         state: {
           gameID: gameID,
+          url: trackURL,
+          user:user,
         }})
       
       // console.log(window.location)
       window.location.replace('/play')
     }
-
-    
   }, [gameID])
-  
-  // useEffect(() => {
-  //   if (song !== undefined) {
-  //     navigate('/play',{
-  //       state: {
-  //         song: song,
-  //       }})
-      
-  //     // console.log(window.location)
-  //     window.location.replace('/play')
-  //   }
-
-    
-  // }, [song])
 
   async function handleClick() {
-    setGameID(await axios.post('https://blind-test-songs-server-predeploy.onrender.com/newgame', { "username": user })
-      .then((newGameRes) => {
-        console.log (newGameRes.data)
-        const newGameID = newGameRes.data.gameID
-        const newSong = newGameRes.data.songURL
-        console.log (newGameRes.data)
-        setGameID(newGameID);
-        setSong(newSong)
-        return newGameID;
-      })
+    const startGameData = await axios.post('https://blind-test-songs-server-predeploy.onrender.com/newgame', { "username": user })
+      .then((newGameRes) => newGameRes.data)
       .catch((err) => console.log(err))
-    )
+    setGameID(startGameData.gameID)
+    console.log(startGameData)
+    setTrackURL(startGameData.songURL)
+    
   }
-
   return (
     <section className="container">
 
@@ -65,7 +45,7 @@ export function Home() {
       <p className="intro-text">To start, just write your name and hit the big ol' button.</p>
       <Link 
         to="/play"
-        state={{gameID: gameID, song:song}}
+        state={{gameID: gameID}}
       ></Link>
       <input className="input"
         autoFocus
