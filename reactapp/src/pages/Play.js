@@ -8,12 +8,12 @@ import { RoundEnd } from '../components/RoundEnd';
 
 
 export function Play(props) {
-  const [currentView, setCurrentView] = useState("round_start");
+  const [currentView, setCurrentView] = useState("round_end");
   const [user, setUser] = useState("");
   const [guess, setGuess] = useState("");
   const [round, setRound] = useState(1);
   const {gameID} = props;
-  const [roundSuccess, setRoundSuccess] = useState();
+  const [roundSuccess, setRoundSuccess] = useState(true);
 
   const location = useLocation();
   console.log(location)

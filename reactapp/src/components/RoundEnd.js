@@ -46,7 +46,7 @@ export function RoundEnd(props){
       {(()=> {
         if (roundSuccess === true) {
           return <h1>Congrats, you've correctly found:
-            score:{score}
+            score:score
              🙌👏!</h1>
       
           
@@ -56,11 +56,11 @@ export function RoundEnd(props){
           
            <h1>Better luck next time!</h1>
            <h2>The answer was :
-            songname:{songname},
-            artist:{artist},
-            album:{album}
+            songname:songname,
+            artist:artist,
+            album:album
            </h2>
-           <h3>Your score is {score}</h3>
+           <h3>Your score is score:score</h3>
            </>
            )
          
