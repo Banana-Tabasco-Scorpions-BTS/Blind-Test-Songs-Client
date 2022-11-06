@@ -1,0 +1,26 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#guess-input {
+    /* height: 70px; */
+    width: 400px;
+    background-color: aliceblue;
+    border-radius: 100px;
+    color: #121212;
+    padding: 20px 40px;
+    font-size: 2rem;
+}
+
+#container-input {
+    display: flex;
+    gap: 25px;
+}
+
+#guess-button {
+    height: 70px;
+    width: 70px;
+    background-color: blueviolet;
+    border-radius: 35px;
+}
