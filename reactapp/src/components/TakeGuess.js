@@ -7,6 +7,7 @@ export function TakeGuess(props) {
   const { guess, setGuess, gameID, setSongInfo, setScore, score, setCurrentView, roundSuccess, setRoundSuccess } = props;
 
   const [guessResult, setGuessResult] = useState();
+  const [successfulGuess, setSuccessfulGuess] = useState(false);
   const inputBox = useRef();
 
   async function sendGuess() {
@@ -14,12 +15,13 @@ export function TakeGuess(props) {
       .post('https://blind-test-songs-server-predeploy.onrender.com/guess', { "gameID": gameID, "guess": guess })
       .then(res => {
         setGuessResult(res.data.guessMatch)
-        if (res.data.guessMatch === true) {
+        if (res.data.guessMatch === true && !successfulGuess) {
           setSongInfo(res.data.result)
           setScore(res.data.currentScore)
           setGuess("")
           setRoundSuccess(res.data.roundSuccess)
           setCurrentView('round_end')
+          setSuccessfulGuess(true)
         } else {
           if (inputBox.current) {
             inputBox.current.classList.add('input-red')
@@ -33,7 +35,7 @@ export function TakeGuess(props) {
   }
 
   const handleEnter = (event) => {
-    if (event.key === 'Enter' && !roundSuccess) {
+    if (event.key === 'Enter' && !successfulGuess) {
       sendGuess()
     }
   }
