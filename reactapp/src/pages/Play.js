@@ -3,6 +3,7 @@ import { RoundOngoing } from '../components/RoundOngoing';
 import { RoundStart } from '../components/RoundStart';
 import { songsdata } from '../songsdata';
 import { useLocation } from "react-router-dom"
+import { RoundEnd } from '../components/RoundEnd';
 
 
 
@@ -12,6 +13,7 @@ export function Play(props) {
   const [guess, setGuess] = useState("");
   const [round, setRound] = useState(1);
   const {gameID} = props;
+  const [roundSuccess, setRoundSuccess] = useState();
 
   const location = useLocation();
   console.log(location)
@@ -41,6 +43,19 @@ export function Play(props) {
                   guess={guess}
                   songsdata={songsdata}
                   setGuess={setGuess}
+                  setRoundSuccess={setRoundSuccess}
+                />
+              </div>
+            )
+            if (currentView === "round_end")
+            return (
+              <div className='round_end'>
+                <RoundEnd
+                  guess={guess}
+                  songsdata={songsdata}
+                  setGuess={setGuess}
+                  roundSuccess={roundSuccess}
+                 
                 />
               </div>
             )
