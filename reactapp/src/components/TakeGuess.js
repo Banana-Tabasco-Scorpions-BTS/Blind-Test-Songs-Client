@@ -1,42 +1,54 @@
 import React, { useEffect, useState, useRef } from "react";
-import './TakeGuess.css';
+import "./TakeGuess.css";
 import axios from "axios";
 
-
 export function TakeGuess(props) {
-  const { guess, setGuess, gameID, setSongInfo, setScore, score, setCurrentView, roundSuccess, setRoundSuccess } = props;
+  const {
+    guess,
+    setGuess,
+    gameID,
+    setSongInfo,
+    setScore,
+    score,
+    setCurrentView,
+    roundSuccess,
+    setRoundSuccess,
+  } = props;
 
   const [guessResult, setGuessResult] = useState();
   const inputBox = useRef();
 
   async function sendGuess() {
     await axios
-      .post('https://blind-test-songs-server-predeploy.onrender.com/guess', { "gameID": gameID, "guess": guess })
-      .then(res => {
-        setGuessResult(res.data.guessMatch)
+      .post("https://blind-test-songs-server-predeploy.onrender.com/guess", {
+        gameID: gameID,
+        guess: guess,
+      }) //url is adapted to render
+      .then((res) => {
+        setGuessResult(res.data.guessMatch);
         if (res.data.guessMatch === true) {
-          setSongInfo(res.data.result)
-          setScore(res.data.currentScore)
-          setGuess("")
-          setRoundSuccess(res.data.roundSuccess)
-          setCurrentView('round_end')
+          setSongInfo(res.data.result);
+          setScore(res.data.currentScore);
+          setGuess("");
+          setRoundSuccess(res.data.roundSuccess);
+          setCurrentView("round_end");
         } else {
           if (inputBox.current) {
-            inputBox.current.classList.add('input-red')
+            inputBox.current.classList.add("input-red");
             setTimeout(() => {
-              inputBox.current.classList.remove('input-red')
+              inputBox.current.classList.remove("input-red");
             }, 500);
           }
         }
-      })
-    setGuess("")
+      });
+    setGuess("");
   }
 
   const handleEnter = (event) => {
-    if (event.key === 'Enter' && !roundSuccess) {
-      sendGuess()
+    if (event.key === "Enter" && !roundSuccess) {
+      sendGuess();
     }
-  }
+  };
 
   return (
     <div id="container-input" onKeyDown={handleEnter}>
@@ -51,7 +63,9 @@ export function TakeGuess(props) {
         value={guess}
         onChange={(e) => setGuess(e.target.value)}
       />
-      <button onClick={sendGuess} id="guess-button">GO</button>
+      <button onClick={sendGuess} id="guess-button">
+        GO
+      </button>
     </div>
-  )
+  );
 }
