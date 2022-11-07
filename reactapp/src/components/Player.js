@@ -31,9 +31,10 @@ export function Player(props) {
     getSoundAndFadeAudio(audio);
   }, [audio]);
 
+  //mute function
+
   return (
     <div>
-      //mute
       <audio hidden controls autoPlay ref={audio}>
         <source src={trackURL} type="audio/mp3"></source>
       </audio>
