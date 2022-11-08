@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useNavigate } from "react-router-dom"
 import axios from 'axios';
@@ -17,7 +18,7 @@ export function Result(props) {
 
     async function getNewGame() {
         const startGameData = await axios
-            .post('https://blind-test-songs-server-predeploy.onrender.com/newgame', { "username": user })
+            .post('http://localhost:8080/newgame', { "username": user })
             .then((newGameRes) => newGameRes.data)
             .catch((err) => console.log(err))
         setGameID(startGameData.gameID)

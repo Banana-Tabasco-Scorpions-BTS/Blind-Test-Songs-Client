@@ -1,0 +1,26 @@
+
+#mute-button {
+    height: 40px;
+    width: 100px;
+    background-color: #7ddb72;
+    border-radius: 35px;
+    margin-top:20px;
+    margin-right: 10px;
+    font-size: 1.3rem;
+    font-weight: 500;
+    background-size: 4000% 1000%;
+    filter: drop-shadow(0 0 0.75rem rgb(255, 255, 255));
+}  
+
+
+
+#volume-button {
+    height: 40px;
+    width: auto;
+    background-color:#7ddb72 ;
+    border-radius: 35px;
+    font-size: 1.3rem;
+    font-weight: 500;
+    background-size: 4000% 1000%; 
+    filter: drop-shadow(0 0 0.75rem rgb(255, 255, 255));
+}
