@@ -1,14 +1,11 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { RoundEnd } from '../components/RoundEnd';
-import { RoundOngoing } from '../components/RoundOngoing';
-import { RoundStart } from '../components/RoundStart';
-import { Result } from '../components/Result';
-import { useLocation } from "react-router-dom"
-
-
+import React, { useRef, useState, useEffect } from "react";
+import { RoundEnd } from "../components/RoundEnd";
+import { RoundOngoing } from "../components/RoundOngoing";
+import { RoundStart } from "../components/RoundStart";
+import { Result } from "../components/Result";
+import { useLocation } from "react-router-dom";
 
 export function Play(props) {
-
   const [currentView, setCurrentView] = useState("round_start");
   const [guess, setGuess] = useState("");
   const [round, setRound] = useState(0);
@@ -17,7 +14,6 @@ export function Play(props) {
   const [user, setUser] = useState("");
   const [roundSuccess, setRoundSuccess] = useState(false);
 
-
   const [songInfo, setSongInfo] = useState();
   const [score, setScore] = useState();
   const [previousScore, setPreviousScore] = useState();
@@ -25,18 +21,17 @@ export function Play(props) {
   const location = useLocation();
 
   useEffect(() => {
-    setTrackURL(location.state.trackURL)
-    setUser(location.state.user)
-    setGameID(location.state.gameID)
-  }, [])
+    setTrackURL(location.state.trackURL);
+    setUser(location.state.user);
+    setGameID(location.state.gameID);
+  }, []);
 
   return (
     <section className="container">
-
       {(() => {
         if (currentView === "round_start") {
           return (
-            <div className='round_start'>
+            <div className="round_start">
               <RoundStart
                 setRound={setRound}
                 gameID={gameID}
@@ -45,11 +40,11 @@ export function Play(props) {
                 setRoundSuccess={setRoundSuccess}
               />
             </div>
-          )
+          );
         }
         if (currentView === "round_ongoing") {
           return (
-            <div className='round_ongoing'>
+            <div className="round_ongoing">
               <RoundOngoing
                 gameID={gameID}
                 guess={guess}
@@ -64,11 +59,11 @@ export function Play(props) {
                 setRoundSuccess={setRoundSuccess}
               />
             </div>
-          )
+          );
         }
         if (currentView === "round_end") {
           return (
-            <div className='round_end'>
+            <div className="round_end">
               <RoundEnd
                 setCurrentView={setCurrentView}
                 songInfo={songInfo}
@@ -81,11 +76,11 @@ export function Play(props) {
                 roundSuccess={roundSuccess}
               />
             </div>
-          )
+          );
         }
         if (currentView === "result") {
           return (
-            <div className='result'>
+            <div className="result">
               <Result
                 setCurrentView={setCurrentView}
                 user={user}
@@ -97,10 +92,9 @@ export function Play(props) {
                 setScore={setScore}
               />
             </div>
-          )
+          );
         }
       })()}
-
     </section>
-  )
-};
+  );
+}

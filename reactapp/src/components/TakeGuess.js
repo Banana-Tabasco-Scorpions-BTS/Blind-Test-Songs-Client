@@ -16,26 +16,28 @@ export function TakeGuess(props) {
   } = props;
 
   const [guessResult, setGuessResult] = useState();
-  const inputBox = useRef();
+  const inputBox = React.useRef("");
 
   async function sendGuess() {
-    await axios.post("/guess", { gameID: gameID, guess: guess }).then((res) => {
-      setGuessResult(res.data.guessMatch);
-      if (res.data.guessMatch === true) {
-        setSongInfo(res.data.result);
-        setScore(res.data.currentScore);
-        setGuess("");
-        setRoundSuccess(res.data.roundSuccess);
-        setCurrentView("round_end");
-      } else {
-        if (inputBox.current) {
-          inputBox.current.classList.add("input-red");
-          setTimeout(() => {
-            inputBox.current.classList.remove("input-red");
-          }, 500);
+    await axios
+      .post("http://localhost:8080/guess", { gameID: gameID, guess: guess })
+      .then((res) => {
+        setGuessResult(res.data.guessMatch);
+        if (res.data.guessMatch === true) {
+          setSongInfo(res.data.result);
+          setScore(res.data.currentScore);
+          setGuess("");
+          setRoundSuccess(res.data.roundSuccess);
+          setCurrentView("round_end");
+        } else {
+          if (inputBox.current) {
+            inputBox.current.classList.add("input-red");
+            setTimeout(() => {
+              inputBox.current.classList.remove("input-red");
+            }, 500);
+          }
         }
-      }
-    });
+      });
     setGuess("");
   }
 
@@ -44,7 +46,6 @@ export function TakeGuess(props) {
       sendGuess();
     }
   };
-
   return (
     <div id="container-input" onKeyDown={handleEnter}>
       <input

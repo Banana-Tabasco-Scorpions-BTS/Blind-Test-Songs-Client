@@ -24,7 +24,7 @@ export function Home() {
 
   async function getNewGame() {
     const startGameData = await axios
-      .post("/newgame", { username: user })
+      .post("http://localhost:8080/newgame", { username: user })
       .then((newGameRes) => newGameRes.data)
       .catch((err) => console.log(err));
     setGameID(startGameData.gameID);

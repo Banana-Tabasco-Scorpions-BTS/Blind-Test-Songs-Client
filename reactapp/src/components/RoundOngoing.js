@@ -18,13 +18,16 @@ export function RoundOngoing(props) {
     roundSuccess,
     setRoundSuccess,
   } = props;
+
   const [redirect, setRedirect] = useState(false);
 
   async function sendTimeout() {
-    await axios.post("/timeout", { gameID: gameID }).then((res) => {
-      setSongInfo(res.data.result);
-      setScore(res.data.currentScore);
-    });
+    await axios
+      .post("http://localhost:8080/timeout", { gameID: gameID })
+      .then((res) => {
+        setSongInfo(res.data.result);
+        setScore(res.data.currentScore);
+      });
     setCurrentView("round_end");
   }
 

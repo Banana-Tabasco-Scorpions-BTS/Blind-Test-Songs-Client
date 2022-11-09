@@ -23,7 +23,7 @@ export function RoundEnd(props) {
 
   async function getNextRound() {
     const songInfo = await axios
-      .post("/nextround", { gameID: gameID })
+      .post("http://localhost:8080/nextround", { gameID: gameID })
       .then((res) => res);
 
     setNextRoundInfo(songInfo);
