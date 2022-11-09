@@ -6,10 +6,14 @@ import React, { useState, useEffect } from "react";
 
 import './App.css'
 
+
+
 function App() {
 
   return (
+
     <div className="background">
+
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='play' element={<Play />} />
