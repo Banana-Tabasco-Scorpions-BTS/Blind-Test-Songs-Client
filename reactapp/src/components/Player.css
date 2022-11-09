@@ -2,7 +2,7 @@
 #mute-button {
     height: 40px;
     width: 100px;
-    background-color: #7ddb72;
+    background-color: #ded5eb;
     border-radius: 35px;
     margin-top:20px;
     margin-right: 10px;
@@ -17,7 +17,7 @@
 #volume-button {
     height: 40px;
     width: auto;
-    background-color:#7ddb72 ;
+    background-color:#ded5eb ;
     border-radius: 35px;
     font-size: 1.3rem;
     font-weight: 500;
