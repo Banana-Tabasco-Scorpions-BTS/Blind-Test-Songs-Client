@@ -20,7 +20,7 @@ export function TakeGuess(props) {
 
   async function sendGuess() {
     await axios
-      .post("https://blind-test-dev.onrender.com/guess", {
+      .post(process.env.REACT_APP_API_URL + "/guess", {
         gameID: gameID,
         guess: guess,
       }) //url is adapted to render
