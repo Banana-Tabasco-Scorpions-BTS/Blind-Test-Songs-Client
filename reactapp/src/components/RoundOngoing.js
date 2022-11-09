@@ -22,12 +22,14 @@ export function RoundOngoing(props) {
 
   async function sendTimeout() {
     await axios
+
       .post("https://blind-test-dev.onrender.com/timeout", { gameID: gameID })
       .then((res) => {
         setSongInfo(res.data.result);
         setScore(res.data.currentScore);
       });
     setCurrentView("round_end");
+
   }
 
   useEffect(() => {
