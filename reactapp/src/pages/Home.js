@@ -73,8 +73,10 @@ export function Home() {
 
   async function getNewGame() {
     const startGameData = await axios
+
       .post("https://blind-test-dev.onrender.com/newgame", { username: user, newPlaylist: playlistData, token: token }) //makes a post request newgame.controller
       .then((newGameRes) => newGameRes.data)//receives response
+
       .catch((err) => console.log(err));
     setGameID(startGameData.gameID);
     setTrackURL(startGameData.songURL); //Change this to our new track on client side.
