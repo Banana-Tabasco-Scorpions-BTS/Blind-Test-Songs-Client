@@ -18,12 +18,13 @@ export function RoundOngoing(props) {
     roundSuccess,
     setRoundSuccess,
   } = props;
-
   const [redirect, setRedirect] = useState(false);
 
   async function sendTimeout() {
     await axios
-      .post("http://localhost:8080/timeout", { gameID: gameID })
+      .post("https://blind-test-songs-server-predeploy.onrender.com/timeout", {
+        gameID: gameID,
+      })
       .then((res) => {
         setSongInfo(res.data.result);
         setScore(res.data.currentScore);

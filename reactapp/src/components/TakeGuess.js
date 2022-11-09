@@ -20,7 +20,10 @@ export function TakeGuess(props) {
 
   async function sendGuess() {
     await axios
-      .post("http://localhost:8080/guess", { gameID: gameID, guess: guess })
+      .post("https://blind-test-songs-server-predeploy.onrender.com/guess", {
+        gameID: gameID,
+        guess: guess,
+      })
       .then((res) => {
         setGuessResult(res.data.guessMatch);
         if (res.data.guessMatch === true) {
@@ -46,6 +49,7 @@ export function TakeGuess(props) {
       sendGuess();
     }
   };
+
   return (
     <div id="container-input" onKeyDown={handleEnter}>
       <input
