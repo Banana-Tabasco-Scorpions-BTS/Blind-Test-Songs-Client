@@ -17,7 +17,6 @@ export function Play(props) {
   const [user, setUser] = useState("");
   const [roundSuccess, setRoundSuccess] = useState(false);
 
-
   const [songInfo, setSongInfo] = useState();
   const [score, setScore] = useState();
   const [previousScore, setPreviousScore] = useState();

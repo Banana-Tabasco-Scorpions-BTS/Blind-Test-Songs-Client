@@ -1,33 +1,45 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from "react";
 import { Player } from "./Player";
 import { CountDownTimer } from "./CountDownTimer";
 import { TakeGuess } from "./TakeGuess";
-import './RoundOngoing.css';
+import "./RoundOngoing.css";
 import axios from "axios";
 
 export function RoundOngoing(props) {
-  const { gameID, trackURL, guess, score, setGuess, setCurrentView, setSongInfo, setScore, roundSuccess, setRoundSuccess } = props;
-  const [redirect, setRedirect] = useState(false)
+  const {
+    gameID,
+    trackURL,
+    guess,
+    score,
+    setGuess,
+    setCurrentView,
+    setSongInfo,
+    setScore,
+    roundSuccess,
+    setRoundSuccess,
+  } = props;
+  const [redirect, setRedirect] = useState(false);
 
   async function sendTimeout() {
     await axios
-      .post(process.env.REACT_APP_API_URL + '/timeout', { "gameID": gameID })
-      .then(res => {
-        setSongInfo(res.data.result)
-        setScore(res.data.currentScore)
-      })
-    setCurrentView("round_end")
+
+      .post("https://blind-test-dev.onrender.com/timeout", { gameID: gameID })
+      .then((res) => {
+        setSongInfo(res.data.result);
+        setScore(res.data.currentScore);
+      });
+    setCurrentView("round_end");
+
   }
 
   useEffect(() => {
     if (redirect === true) {
-      sendTimeout()
+      sendTimeout();
     }
-  }, [redirect])
+  }, [redirect]);
 
   return (
-    <div id='round-ongoing__all'>
-
+    <div id="round-ongoing__all">
       <div className="guess-timer">
         <CountDownTimer seconds={25} setRedirect={setRedirect} />
       </div>
@@ -47,14 +59,8 @@ export function RoundOngoing(props) {
       </div>
 
       <div className="player">
-        <Player
-          trackURL={trackURL}
-        />
+        <Player trackURL={trackURL} />
       </div>
-
     </div>
-  )
+  );
 }
-
-
-
