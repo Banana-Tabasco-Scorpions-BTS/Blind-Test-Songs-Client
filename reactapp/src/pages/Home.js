@@ -7,7 +7,7 @@ import "./Home.css";
 /* AUTH AUTH AUTH AUTH CAUTION AUTH AUTH AUTH AUTH*/
 
 const CLIENT_ID = "5937b61f9fc14d478ee7b1f4328f7fe3"
-const REDIRECT_URI = "http://localhost:3000"
+const REDIRECT_URI = " https://blind-test-client-dev-react.onrender.com/ "
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
 const RESPONSE_TYPE = "token"
 
