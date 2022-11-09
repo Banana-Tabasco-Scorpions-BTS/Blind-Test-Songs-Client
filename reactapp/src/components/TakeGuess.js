@@ -57,7 +57,7 @@ export function TakeGuess(props) {
         autoFocus
         className="guess-input"
         autoComplete="off"
-        onKeyDown={handleEnter}
+        // onKeyDown={handleEnter}
         type="text"
         required
         value={guess}
