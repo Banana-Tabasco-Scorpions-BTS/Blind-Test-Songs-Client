@@ -17,7 +17,9 @@ export function Result(props) {
 
   async function getNewGame() {
     const startGameData = await axios
-      .post("https://blind-test-dev.onrender.com/newgame", { username: user })
+      .post("https://blind-test-working.onrender.com/newgame", {
+        username: user,
+      })
       .then((newGameRes) => newGameRes.data)
       .catch((err) => console.log(err));
     setGameID(startGameData.gameID);
