@@ -22,7 +22,7 @@ export function RoundOngoing(props) {
 
   async function sendTimeout() {
     await axios
-      .post("https://blind-test-working.onrender.com/timeout", {
+      .post("https://blind-test-woring-server.onrender.com/timeout", {
         gameID: gameID,
       })
       .then((res) => {

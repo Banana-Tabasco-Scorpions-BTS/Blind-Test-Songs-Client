@@ -24,7 +24,7 @@ export function Home() {
 
   async function getNewGame() {
     const startGameData = await axios
-      .post("https://blind-test-working.onrender.com/newgame", {
+      .post("https://blind-test-woring-server.onrender.com/newgame", {
         username: user,
       })
       .then((newGameRes) => newGameRes.data)
