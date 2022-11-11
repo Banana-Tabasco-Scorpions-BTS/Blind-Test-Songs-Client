@@ -18,7 +18,7 @@
     gap: 25px;
 }
 
-#guess-button {
+#guess-button  {
     height: 70px;
     width: 70px;
     background: linear-gradient(90deg, #b934e9, #db4540, #f1de12,#b240db);
@@ -29,6 +29,7 @@
     filter: drop-shadow(0 0 0.75rem rgb(255, 255, 255));
     animation: button-gradient 6s ease infinite;
 }
+
 
 @keyframes button-gradient {
 0%{background-position:0% 50%}

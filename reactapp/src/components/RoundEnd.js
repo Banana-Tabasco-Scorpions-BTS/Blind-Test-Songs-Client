@@ -23,9 +23,7 @@ export function RoundEnd(props) {
 
   async function getNextRound() {
     const songInfo = await axios
-      .post("https://blind-test-woring-server.onrender.com/nextround", {
-        gameID: gameID,
-      })
+      .post(process.env.REACT_APP_API_URL + "/nextround", { gameID: gameID })
       .then((res) => res);
 
     setNextRoundInfo(songInfo);
@@ -34,9 +32,7 @@ export function RoundEnd(props) {
 
   async function getResult() {
     const result = await axios
-      .post("https://blind-test-woring-server.onrender.com/result", {
-        gameID: gameID,
-      })
+      .post(process.env.REACT_APP_API_URL + "/result", { gameID: gameID })
       .then((res) => res);
     setPreviousScore(result.data.previousScore);
     setCurrentView("result");
