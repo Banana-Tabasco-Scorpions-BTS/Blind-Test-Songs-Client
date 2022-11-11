@@ -22,7 +22,7 @@ export function RoundOngoing(props) {
 
   async function sendTimeout() {
     await axios
-      .post(process.env.REACT_APP_API_URL + "timeout", { gameID: gameID })
+      .post(process.env.REACT_APP_API_URL + "/timeout", { gameID: gameID })
       .then((res) => {
         console.log(res);
         setSongInfo(res.data.result);
