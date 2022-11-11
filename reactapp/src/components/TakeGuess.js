@@ -20,7 +20,7 @@ export function TakeGuess(props) {
 
   async function sendGuess() {
     await axios
-      .post(process.env.REACT_APP_API_URL  + '/guess', {
+      .post(process.env.REACT_APP_API_URL + "/guess", {
         gameID: gameID,
         guess: guess,
       }) //url is adapted to render
@@ -57,7 +57,6 @@ export function TakeGuess(props) {
         autoFocus
         className="guess-input"
         autoComplete="off"
-        onKeyDown={handleEnter}
         type="text"
         required
         value={guess}
