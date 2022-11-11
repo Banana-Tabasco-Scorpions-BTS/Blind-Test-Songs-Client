@@ -57,13 +57,17 @@ export function TakeGuess(props) {
         autoFocus
         className="guess-input"
         autoComplete="off"
-        onKeyDown={handleEnter}
         type="text"
         required
         value={guess}
         onChange={(e) => setGuess(e.target.value)}
       />
-      <button onClick={sendGuess} id="guess-button">
+      <button
+        onClick={(e) => {
+          onClick = { sendGuess };
+        }}
+        id="guess-button"
+      >
         GO
       </button>
     </div>
