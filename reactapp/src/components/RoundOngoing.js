@@ -22,7 +22,9 @@ export function RoundOngoing(props) {
 
   async function sendTimeout() {
     await axios
-      .post(process.env.REACT_APP_API_URL + "/timeout", { gameID: gameID })
+      .post("https://blind-test-woring-server.onrender.com/timeout", {
+        gameID: gameID,
+      })
       .then((res) => {
         setSongInfo(res.data.result);
         setScore(res.data.currentScore);
