@@ -64,9 +64,7 @@ export function TakeGuess(props) {
       />
       <button
         onClick={(e) => {
-          setGuess(e.target.value);
-          console.log(guess);
-          sendGuess(e.target.value);
+          onClick = { sendGuess };
         }}
         id="guess-button"
       >
